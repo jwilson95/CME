@@ -2,5 +2,7 @@ package Impl;
 
 public interface PalindromeImpl {
 
-    boolean palindromeChecker(String input);
+    void palindromeChecker(String userName, String input);
+    void saveToCache(String userName, String textValue);
+    void loadCache(String values);
 }

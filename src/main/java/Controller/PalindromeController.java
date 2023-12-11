@@ -1,4 +1,4 @@
-package PalindromeChecker.CME;
+package Controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

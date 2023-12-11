@@ -1,5 +1,6 @@
-package PalindromeChecker.CME;
+package Impl.Service;
 
+import Impl.PalindromeImpl;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -12,14 +13,10 @@ import java.util.Objects;
 @Setter
 @Slf4j
 @Service
-public class PalindromeImplService {
+public class PalindromeImplService implements PalindromeImpl {
 
-        // TODO variables that will be used for file caching
-        private String username;
-        private String value;
-
-        public static boolean palindromeChecker(@RequestParam String input){
-
+        @Override
+        public boolean palindromeChecker(@RequestParam String input) {
                 StringBuilder reverseValue = new StringBuilder();
                 boolean result;
 
@@ -39,6 +36,4 @@ public class PalindromeImplService {
                 }
                 return result;
         }
-
-
 }

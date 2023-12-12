@@ -30,3 +30,5 @@ TODO:
 - Caching will be implemented via ArrayList
 - create a controller for rest API functionality
 - write user tests
+
+URL - http://localhost:8080/swagger-ui/index.html#/palindrome-controller/isPalindrome

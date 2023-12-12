@@ -1,6 +1,6 @@
-package Impl;
+package impl;
 
 public interface PalindromeImpl {
 
-    void palindromeChecker(String userName, String input);
+    boolean palindromeChecker(String input);
 }

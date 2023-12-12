@@ -1,4 +1,4 @@
-package Impl.Service;
+package impl.service;
 
 import java.util.ArrayList;
 
@@ -12,10 +12,10 @@ public class PalindromeCache {
     }
 
     public boolean isPalindromeCached(String input){
-        return cache.contains(input);
+        return cache.contains(input.toLowerCase());
     }
 
     public void addToCache(String input){
-        cache.add(input);
+        cache.add(input.toLowerCase());
     }
 }

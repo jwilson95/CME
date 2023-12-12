@@ -1,4 +1,4 @@
-package impl.service;
+package com.cme.palindrome.impl.service;
 
 import java.util.ArrayList;
 

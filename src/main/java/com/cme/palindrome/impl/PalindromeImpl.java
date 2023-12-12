@@ -1,4 +1,4 @@
-package impl;
+package com.cme.palindrome.impl;
 
 public interface PalindromeImpl {
 

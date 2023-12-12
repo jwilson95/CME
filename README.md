@@ -27,7 +27,6 @@ storage.
 
 TODO:
 - Create an application that checks if an input is a palindrome or not.
-- When completed, save response and value to a json file to create foundation of caching
-- Check if value exists inside the json file
+- Caching will be implemented via ArrayList
 - create a controller for rest API functionality
 - write user tests

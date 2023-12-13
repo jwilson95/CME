@@ -15,6 +15,7 @@ public class PalindromeImplService implements PalindromeImpl {
 
         @Override
         public boolean palindromeChecker(String originalString) throws IOException {
+
                 if (!isValidString(originalString)) {
                         log.error("String does not meet the correct format");
                         return false;
@@ -24,7 +25,6 @@ public class PalindromeImplService implements PalindromeImpl {
                 String reverseValue = new StringBuilder(lowerCaseString).reverse().toString();
                 boolean isPalindromeCheck = lowerCaseString.equals(reverseValue);
 
-                if(!originalString.isEmpty()){
                         if (palindromeCache.isPalindromeCached(originalString)) {
                                 log.info("Input is a palindrome and was in the cache: " + originalString);
                         } else {
@@ -36,13 +36,14 @@ public class PalindromeImplService implements PalindromeImpl {
                                         log.error("Not a Palindrome: " + originalString);
                                 }
                         }
-                }
                 return isPalindromeCheck;
         }
 
         @Override
         public boolean isValidString(String originalString){
-                return originalString.chars().noneMatch(Character::isSpaceChar) && originalString.chars().noneMatch(Character::isDigit);
+                return !originalString.isEmpty()
+                        && originalString.chars().noneMatch(Character::isSpaceChar)
+                        && originalString.chars().noneMatch(Character::isDigit);
         }
 
         @Override

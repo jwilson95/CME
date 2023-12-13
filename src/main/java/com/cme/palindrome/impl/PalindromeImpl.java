@@ -4,4 +4,5 @@ public interface PalindromeImpl {
 
     boolean palindromeChecker(String input);
     boolean isValidString(String input);
+    void loadPermanentCache();
 }

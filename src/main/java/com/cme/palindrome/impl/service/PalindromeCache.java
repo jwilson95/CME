@@ -3,6 +3,7 @@ package com.cme.palindrome.impl.service;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -23,9 +24,9 @@ public class PalindromeCache {
         cache.add(input.toLowerCase());
     }
 
-    public void printCache() {
-        for (String content : cache) {
-            log.info("Cache contains: " + content);
+    public void checkCache(String input) {
+        if (cache.contains(input)) {
+            log.info(input + " is already in the cache");
         }
     }
 }

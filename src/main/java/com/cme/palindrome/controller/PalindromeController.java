@@ -18,6 +18,7 @@ public class PalindromeController {
 
     @PostMapping("/isPalindrome")
     public boolean isPalindrome(@RequestBody Input originalString) {
+        palindromeImpl.loadPermanentCache();
         return palindromeImpl.palindromeChecker(originalString.getOriginalString());
     }
 }

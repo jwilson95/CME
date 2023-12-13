@@ -15,35 +15,38 @@ public class PalindromeImplService implements PalindromeImpl {
 
         @Override
         public boolean palindromeChecker(String originalString) throws IOException {
+            // validate string
+            if (!isValidString(originalString)) {
+                    log.error("String does not meet the correct format");
+                    return false;
+            }
 
-                if (!isValidString(originalString)) {
-                        log.error("String does not meet the correct format");
-                        return false;
-                }
+            String lowerCaseString = originalString.toLowerCase();
 
-                String lowerCaseString = originalString.toLowerCase();
-                String reverseValue = new StringBuilder(lowerCaseString).reverse().toString();
-                boolean isPalindromeCheck = lowerCaseString.equals(reverseValue);
+            // check if string is in the cache before reverse logic for better performance
+            if(palindromeCache.isPalindromeCached(lowerCaseString)){
+                log.info("Input is a palindrome and was in the cache: " + originalString);
+                return true;
+            }
 
-                        if (palindromeCache.isPalindromeCached(originalString)) {
-                                log.info("Input is a palindrome and was in the cache: " + originalString);
-                        } else {
-                                if (isPalindromeCheck) {
-                                        palindromeCache.addToCache(originalString);
-                                        saveToPermanentCache(originalString);
-                                        log.info("Added string " + originalString + " to the cache");
-                                } else {
-                                        log.error("Not a Palindrome: " + originalString);
-                                }
-                        }
-                return isPalindromeCheck;
+            String reverseValue = new StringBuilder(lowerCaseString).reverse().toString();
+            boolean isPalindromeCheck = lowerCaseString.equals(reverseValue);
+
+            if (isPalindromeCheck) {
+                    palindromeCache.addToCache(originalString);
+                    saveToPermanentCache(originalString);
+                    log.info("Added string " + originalString + " to the cache");
+            } else {
+                    log.error("Not a Palindrome: " + originalString);
+            }
+            return isPalindromeCheck;
         }
 
         @Override
         public boolean isValidString(String originalString){
-                return !originalString.isEmpty()
-                        && originalString.chars().noneMatch(Character::isSpaceChar)
-                        && originalString.chars().noneMatch(Character::isDigit);
+            return !originalString.isEmpty()
+                    && originalString.chars().noneMatch(Character::isSpaceChar)
+                    && originalString.chars().noneMatch(Character::isDigit);
         }
 
         @Override
@@ -61,15 +64,15 @@ public class PalindromeImplService implements PalindromeImpl {
 
         @Override
         public void saveToPermanentCache(String input) throws IOException {
-                if (palindromeCache.isPalindromeCached(input)){
-                    try(BufferedWriter br = new BufferedWriter(new FileWriter(CACHE_FILE_PATH, true))){
-                                br.write(input + ",");
-                                log.info(input + " has been saved to permanent cache");
-                        }catch (IOException e){
-                            log.error("Error saving to permanent cache: " + e.getMessage());
-                            throw e;
-                    }
+            if (palindromeCache.isPalindromeCached(input)){
+                try(BufferedWriter br = new BufferedWriter(new FileWriter(CACHE_FILE_PATH, true))){
+                            br.write(input + ",");
+                            log.info(input + " has been saved to permanent cache");
+                    }catch (IOException e){
+                        log.error("Error saving to permanent cache: " + e.getMessage());
+                        throw e;
                 }
+            }
         }
 
 }

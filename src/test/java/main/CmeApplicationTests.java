@@ -9,6 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.IOException;
+
 @ExtendWith(MockitoExtension.class)
 class CmeApplicationTests {
 
@@ -20,17 +22,17 @@ class CmeApplicationTests {
 	}
 
 	@Test
-	void testIsPalindrome(){
+	void testIsPalindrome() throws IOException {
 		Assertions.assertTrue(palindrome.palindromeChecker("madam"));
 	}
 
 	@Test
-	void testIsNotPalindrome(){
+	void testIsNotPalindrome() throws IOException {
 		Assertions.assertFalse(palindrome.palindromeChecker("test"));
 	}
 
 	@Test
-	void isPalindromeCached(){
+	void isPalindromeCached() throws IOException {
 		palindrome.palindromeChecker("madam");
 		Mockito.verify(palindrome, Mockito.times(1)).palindromeChecker("madam");
 	}

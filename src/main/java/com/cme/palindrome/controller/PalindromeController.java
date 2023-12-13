@@ -5,6 +5,8 @@ import com.cme.palindrome.model.Input;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/cme_challenge")
 public class PalindromeController {
@@ -17,7 +19,8 @@ public class PalindromeController {
     }
 
     @PostMapping("/isPalindrome")
-    public boolean isPalindrome(@RequestBody Input originalString) {
+    public boolean isPalindrome(@RequestBody Input originalString) throws IOException {
+        palindromeImpl.loadPermanentCache();
         return palindromeImpl.palindromeChecker(originalString.getOriginalString());
     }
 }

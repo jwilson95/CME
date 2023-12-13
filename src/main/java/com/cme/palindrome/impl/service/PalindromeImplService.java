@@ -20,12 +20,12 @@ public class PalindromeImplService implements PalindromeImpl {
                 StringBuilder reverseValue = new StringBuilder(originalString.toLowerCase()).reverse();
                 boolean isPalindromeCheck = originalString.contentEquals(reverseValue);
 
-                palindromeCache.checkCache(originalString);
+                        loadPermanentCache();
                         if(!isValidString(originalString)) {
                                 log.error("String does not meet the correct format");
                         }else{
                                 if(palindromeCache.isPalindromeCached(originalString)){
-//                                        log.info("Input is a palindrome and was in the cache: " + originalString);
+                                        log.info("Input is a palindrome and was in the cache: " + originalString);
                                 }else{
                                         if(isPalindromeCheck){
                                                 palindromeCache.addToCache(originalString);
@@ -49,7 +49,7 @@ public class PalindromeImplService implements PalindromeImpl {
                 try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
                         String line;
                         while ((line = reader.readLine()) != null) {
-                                log.info("Permanent cache contains: "  + line);
+                                palindromeCache.addToCache(line);
                         }
                 } catch (IOException e) {
                         e.printStackTrace();

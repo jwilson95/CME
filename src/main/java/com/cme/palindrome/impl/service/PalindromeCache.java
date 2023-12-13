@@ -23,10 +23,4 @@ public class PalindromeCache {
     public void addToCache(String input){
         cache.add(input.toLowerCase());
     }
-
-    public void checkCache(String input) {
-        if (cache.contains(input)) {
-            log.info(input + " is already in the cache");
-        }
-    }
 }

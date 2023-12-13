@@ -1,10 +1,14 @@
 package com.cme.palindrome.impl.service;
 
-import java.util.ArrayList;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Slf4j
 public class PalindromeCache {
 
-    private final ArrayList<String> cache;
+    private final List<String> cache;
 
     // Initialize our cache
     public PalindromeCache(){
@@ -17,5 +21,11 @@ public class PalindromeCache {
 
     public void addToCache(String input){
         cache.add(input.toLowerCase());
+    }
+
+    public void printCache() {
+        for (String content : cache) {
+            log.info("Cache contains: " + content);
+        }
     }
 }

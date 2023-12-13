@@ -17,7 +17,7 @@ public class PalindromeController {
     }
 
     @PostMapping("/isPalindrome")
-    public boolean isPalindrome(@RequestBody Input input) {
-        return palindromeImpl.palindromeChecker(input.getInput());
+    public boolean isPalindrome(@RequestBody Input originalString) {
+        return palindromeImpl.palindromeChecker(originalString.getOriginalString());
     }
 }

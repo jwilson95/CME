@@ -15,6 +15,6 @@ public class Input {
     @NotNull
     private String user;
     @NotNull
-    private String input;
+    private String originalString;
 
 }

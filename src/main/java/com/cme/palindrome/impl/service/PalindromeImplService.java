@@ -11,6 +11,7 @@ import java.io.*;
 public class PalindromeImplService implements PalindromeImpl {
 
         private final PalindromeCache palindromeCache = new PalindromeCache();
+        private static final String CACHE_FILE_PATH = "cacheFile.csv";
 
         @Override
         public boolean palindromeChecker(String originalString) throws IOException {
@@ -29,8 +30,8 @@ public class PalindromeImplService implements PalindromeImpl {
                         } else {
                                 if (isPalindromeCheck) {
                                         palindromeCache.addToCache(originalString);
-                                        log.info("Added string " + originalString + " to the cache");
                                         saveToPermanentCache(originalString);
+                                        log.info("Added string " + originalString + " to the cache");
                                 } else {
                                         log.error("Not a Palindrome: " + originalString);
                                 }
@@ -46,25 +47,27 @@ public class PalindromeImplService implements PalindromeImpl {
 
         @Override
         public void loadPermanentCache() {
-                final String filepath = "cacheFile.csv";
-                try (BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(CACHE_FILE_PATH))) {
                         String line;
                         while ((line = reader.readLine()) != null) {
                                 palindromeCache.addToCache(line);
+                                log.info("Permanent cache contains :" + line);
                         }
                 } catch (IOException e) {
-                        e.printStackTrace();
+                    log.error("Error loading permanent cache: " + e.getMessage());
                 }
         }
 
         @Override
         public void saveToPermanentCache(String input) throws IOException {
                 if (palindromeCache.isPalindromeCached(input)){
-                        final String filepath = "cacheFile.csv";
-                        try(BufferedWriter br = new BufferedWriter(new FileWriter(filepath, true))){
+                    try(BufferedWriter br = new BufferedWriter(new FileWriter(CACHE_FILE_PATH, true))){
                                 br.write(input + ",");
                                 log.info(input + " has been saved to permanent cache");
-                        }
+                        }catch (IOException e){
+                            log.error("Error saving to permanent cache: " + e.getMessage());
+                            throw e;
+                    }
                 }
         }
 

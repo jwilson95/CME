@@ -20,7 +20,6 @@ public class PalindromeController {
 
     @PostMapping("/isPalindrome")
     public boolean isPalindrome(@RequestBody Input originalString) throws IOException {
-        palindromeImpl.loadPermanentCache();
         return palindromeImpl.palindromeChecker(originalString.getOriginalString());
     }
 }

@@ -1,3 +1,5 @@
+CME Challenge:
+
 Introduction
 write a Java program based on provided requirements.
 Please state all assumptions when implementing a solution.
@@ -25,10 +27,13 @@ storage.
 • Assist in diagnosing any support enquires.
 • For this POC no API authorization is required.
 
-TODO:
-- Create an application that checks if an input is a palindrome or not.
-- Caching will be implemented via ArrayList
-- create a controller for rest API functionality
-- write user tests
 
-URL - http://localhost:8080/swagger-ui/index.html#/palindrome-controller/isPalindrome
+
+Solution:
+
+Java - 17
+gradle - 8.5
+springboot - 3
+
+
+URL for swagger to test POST endpoint - http://localhost:8080/swagger-ui/index.html#/palindrome-controller/isPalindrome

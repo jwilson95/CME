@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.util.Objects;
+
 @Slf4j
 @Service
 public class PalindromeServiceImpl implements PalindromeImpl {
@@ -14,7 +16,11 @@ public class PalindromeServiceImpl implements PalindromeImpl {
 
     @Override
     public boolean palindromeChecker(String originalString) throws IOException {
-        loadPermanentCache();
+
+        if (palindromeCache.isCacheEmpty()) {
+            loadPermanentCache();
+            palindromeCache.printCahce();
+        }
 
         if (isValidString(originalString)) {
             String lowerCaseString = originalString.toLowerCase();
@@ -27,8 +33,10 @@ public class PalindromeServiceImpl implements PalindromeImpl {
                 boolean isPalindromeCheck = lowerCaseString.equals(reverseValue);
 
                 if (isPalindromeCheck) {
+                    palindromeCache.printCahce();
                     palindromeCache.addToCache(lowerCaseString);
                     saveToPermanentCache(lowerCaseString);
+                    palindromeCache.printCahce();
                     log.info("It is a Palindrome: " + lowerCaseString);
                     log.info("Added string " + lowerCaseString + " to the cache");
                 } else {
@@ -55,6 +63,7 @@ public class PalindromeServiceImpl implements PalindromeImpl {
             String line;
             while ((line = reader.readLine()) != null) {
                 log.info("Permanent cache contains: " + line);
+                palindromeCache.addToCache(line);
             }
         } catch (IOException e) {
             log.error("Error loading permanent cache: " + e.getMessage());

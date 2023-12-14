@@ -29,4 +29,8 @@ public class PalindromeCache {
         log.info("Local cache contains: " + cache);
     }
 
+    public boolean isCacheEmpty(){
+        return cache.isEmpty();
+    }
+
 }
